@@ -1,0 +1,12 @@
+{
+    "total_revenue": "Total Revenue",
+    "cost_of_revenue": "Cost Of Revenue",
+    "gross_profit": "Gross Profit",
+    "operating_expenses": "Operating Expense",
+    "operating_income": "Operating Income",
+    "net_non_operating_interest_income_expense": "Net Non Operating Interest Income Expense",
+    "other_income_expense": "Other Income Expense",
+    "pretax_income": "Pretax Income",
+    "tax_provision": "Tax Provision",
+    "net_income_common_stockholders": "Net Income Common Stockholders"
+}

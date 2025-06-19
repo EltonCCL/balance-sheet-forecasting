@@ -1,0 +1,37 @@
+{
+    "total_assets": {
+        "current_assets": {
+            "cash_and_equivalents": "Cash Cash Equivalents And Short Term Investments",
+            "receivables": "Receivables",
+            "Inventory": "Inventory",
+            "hedging_assets_current": "Hedging Assets Current",
+            "other_current_assets": "Other Current Assets"
+        },
+        "non_current_assets": {
+            "net_ppe": "Net PPE",
+            "investments": "Investments And Advances",
+            "goodwill": "Goodwill And Other Intangible Assets",
+            "other_non_current_assets": "Other Non Current Assets"
+        }
+    },
+    "total_liabilities": {
+        "current_liabilities": {
+            "payables_and_accrued_expenses": "Payables And Accrued Expenses",
+            "pension_and_other_postretirement_benefits": "Pensionand Other Post Retirement Benefit Plans Current",
+            "current_debt": "Current Debt And Capital Lease Obligation",
+            "current_deferred_liabilities": "Current Deferred Liabilities",
+            "other_current_liabilities": "Other Current Liabilities"
+        },
+        "non_current_liabilities": {
+            "long_term_debt": "Long Term Debt And Capital Lease Obligation",
+            "non_current_deferred_liabilities": "Non Current Deferred Liabilities",
+            "tradeand_other_payables_non_current": "Tradeand Other Payables Non Current",
+            "other_non_current_liabilities": "Other Non Current Liabilities"
+        }
+    },
+    "total_equity": {
+        "capital_stock": "Capital Stock",
+        "retained_earnings": "Retained Earnings",
+        "gains_losses_not_affecting_retained_earning": "Gains Losses Not Affecting Retained Earnings"
+    }
+}
