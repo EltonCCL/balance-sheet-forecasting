@@ -15,6 +15,8 @@ This project provides tools to download, analyze, and forecast financial stateme
 ├── example.ipynb
 ├── README.md
 ├── requirements.txt
+├── quick_notes.md
+├── forecasting.pdf
 └── utils.py
 ```
 
@@ -23,6 +25,8 @@ This project provides tools to download, analyze, and forecast financial stateme
 - `config/`: Contains configuration files for mapping financial statement items. Each subdirectory is named after a stock ticker (e.g., `MSFT`).
 - `requirements.txt`: A list of python dependencies for the project.
 - `*.ipynb`: Jupyter notebooks for testing and experimentation.
+- `quick_notes.md`: Notes on this topic.
+- `forecasting.pdf`: Wrap up of this work.
 
 ## Usage
 
