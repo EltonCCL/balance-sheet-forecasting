@@ -351,7 +351,12 @@ class CompanyFS:
         cfo = forecast_drivers["net_income"] + forecast_drivers["depreciation"]
 
         # Cash Flow from Investing (CFI)
-        forecast_drivers["capex"] = forecast_drivers["depreciation"]
+        forecast_drivers["capex"] = (
+            forecast_drivers["sales"]
+            * driver_attributes["capex_as_percentage_of_sales"]
+        )
+        # forecast_drivers["capex"] = forecast_drivers["depreciation"]
+
         cfi = -forecast_drivers["capex"]
 
         # Scheduled Cash Flow from Financing (CFF)
@@ -493,9 +498,10 @@ class CompanyFS:
         total_equity = sum_dict_values(forecast_bs["total_equity"])
         balance_check = total_assets - total_liabilities - total_equity
 
-        assert balance_check == 0, (
-            f"Balance sheet does not balance for year {year_number}: {total_assets} != "
-            f"{total_liabilities} + {total_equity}"
+        tolerance = 1e-4
+        assert abs(balance_check) < tolerance, (
+            f"Balance sheet does not balance for year {year_number}. "
+            f"Difference is: {balance_check}"
         )
 
         return forecast_bs, forecast_drivers
@@ -503,12 +509,12 @@ class CompanyFS:
 
 def print_balance_sheet(d, indent=0):
     for key, value in d.items():
-        print(" " * indent + str(key) + ":")
+        print(" " * indent + str(key))
         if isinstance(value, dict):
             print_balance_sheet(value, indent + 2)
-        else:
-            pass
-            print(" " * (indent + 2) + str(value))
+        # else:
+        #     pass
+        #     print(" " * (indent + 2) + str(value))
 
 
 def main():
@@ -516,15 +522,16 @@ def main():
     # print(msft_fs.get_bs("2021-06-30"))
     # print(msft_fs.get_pnl("2021-06-30"))
     # print(msft_fs.get_cf("2021-06-30"))
-
+    print_balance_sheet(msft_fs.get_bs("2021-06-30"))
     # No growth
     override_driver = {
-        "sales_growth_rate": 1.0,
-        "dividend_payout_ratio": 1.0,
+        "sales_growth_rate": 1.5,
+        # "operating_margin": 0.5,
+        # "dividend_payout_ratio": 1,
     }
-    # Forecast multiple years (3 years as an example)
+
     forecasted_years = msft_fs.forecast_balancesheet(
-        "2021-06-30", num_years=3, override=override_driver
+        "2021-06-30", num_years=2, override=override_driver
     )
 
     # Display results for each forecasted year
@@ -551,15 +558,10 @@ def main():
 
     # Example of accessing specific years:
     print(f"\n--- Quick Access Examples ---")
-    print(
-        f"Year 1 Total Assets: {sum_dict_values(forecasted_years[0][0]['total_assets']):,.0f}"
-    )
-    print(
-        f"Year 2 Total Assets: {sum_dict_values(forecasted_years[1][0]['total_assets']):,.0f}"
-    )
-    print(
-        f"Year 3 Total Assets: {sum_dict_values(forecasted_years[2][0]['total_assets']):,.0f}"
-    )
+    for i, (forecast_bs, _) in enumerate(forecasted_years):
+        print(
+            f"Year {i+1} Total Assets: {sum_dict_values(forecast_bs['total_assets']):,.0f}"
+        )
 
 
 if __name__ == "__main__":
